@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<title>Index page</title>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">Student System</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="add_student">Add student</a>
+
+			</ul>
+
+		</div>
+	</nav>
+
+
+	<div th:if=${session.msg}>
+		<div class="alert alert-success" role="alert" th:text="${session.msg}"></div>"
+		<th:block th:text="${@sessionHelperStudent.removeMassageFromSession()}"></th:block>
+
+	</div>
+
+	<div class="container p-5">
+		<table class="table table-striped">
+			<thead class="bg-primary text-white">
+				<tr>
+
+					<th scope="col">Id</th>
+					<th scope="col">Name</th>
+					<th scope="col">Roll_no</th>
+					<th scope="col">Hindi_M</th>
+					<th scope="col">English</th>
+					<th scope="col">Math</th>
+					<th scope="col">Physics</th>
+					<th scope="col">Chamistry</th>
+					<th scope="col">Percentag</th>
+					<th scope="col">Grade</th>
+					<th scope="col">Edit</th>
+					<th scope="col">Delete</th>
+
+				</tr>
+			</thead>
+			<tbody>
+					<tr th:each="s : ${Student}">
+						<th th:text="${s.id}">1</th>
+						<td th:text="${s.name}"></td>
+						<td th:text="${s.roll_Number}"></td>
+						<td th:text="${s.hindi}"></td>
+						<td th:text="${s.english}"></td>
+						<td th:text="${s.math}"></td>
+						<td th:text="${s.physics}"></td>
+						<td th:text="${s.chamistry}"></td>
+						<td th:text="${s.percentag}"></td>
+						<td th:text="${s.grade}"></td>
+						
+
+						<<td>
+							<a th:href="@{'/editStudent/'+${s.id}}" class="btn btn-sm btn-success">Edit</a>
+						</td>
+
+						<td> <a th:href="@{'/delete/'+${s.id}}" class="btn btn-sm btn-danger">Delete</a></td>
+	
+					</tr>
+
+			</tbody>
+		</table>
+
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"></script>
+
+</body>
+
+</html>
